@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.11
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myWaterPlantir_MeadowApp", "myWaterPlantir_MeadowApp\myWaterPlantir_MeadowApp.csproj", "{32BB805A-0BBC-45C5-9290-D2B7842E3869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "myWaterPlantir_Core", "myWaterPlantir_Core\myWaterPlantir_Core.csproj", "{F0B5B6F0-1E5B-44E9-9AED-7DCE1519AFCC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32BB805A-0BBC-45C5-9290-D2B7842E3869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32BB805A-0BBC-45C5-9290-D2B7842E3869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32BB805A-0BBC-45C5-9290-D2B7842E3869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32BB805A-0BBC-45C5-9290-D2B7842E3869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0B5B6F0-1E5B-44E9-9AED-7DCE1519AFCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0B5B6F0-1E5B-44E9-9AED-7DCE1519AFCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0B5B6F0-1E5B-44E9-9AED-7DCE1519AFCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0B5B6F0-1E5B-44E9-9AED-7DCE1519AFCC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5BCBF73-7ECA-453D-8735-8B2E8A41735C}
+	EndGlobalSection
+EndGlobal

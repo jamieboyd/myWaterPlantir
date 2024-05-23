@@ -1,0 +1,19 @@
+﻿# Uncomment to set the default Wi-Fi credentials. (This file will be processed into secure storage on the ESP32 and then deleted from the device.)
+# To learn more about these config options, including custom application configuration settings, check out the Application Settings Configuration documentation.
+# http://developer.wildernesslabs.co/Meadow/Meadow.OS/Configuration/WiFi_Configuration/
+
+# WiFi network credentials
+Credentials:
+
+    # WiFi SSID
+    Ssid: "Primus-2032"
+
+    # WiFi Password
+    Password: 6e649a5898
+
+#Ssid:Netzik
+#Password:Siena911
+##Ssid:"Primus-2032"
+##Password:6e649a5898
+##Ssid: "TELUS38DD"
+##Password: HU2AnuhUfpN9
