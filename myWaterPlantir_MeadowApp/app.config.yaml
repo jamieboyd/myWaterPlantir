@@ -11,8 +11,8 @@ Lifecycle:
 # # Adjust the level of logging detail.
 Logging:
   LogLevel:
-  #  Default: Info
-    Default: Warn
+  #  Default: Information
+    Default: Information
 # Meadow.Cloud configuration.
 MeadowCloud:
     

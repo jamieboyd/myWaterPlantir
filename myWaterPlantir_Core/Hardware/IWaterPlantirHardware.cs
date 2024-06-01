@@ -1,20 +1,16 @@
-﻿using Meadow.Foundation.Graphics;
-using Meadow.Foundation.Sensors.Environmental;
-using Meadow.Peripherals.Displays;
-using Meadow.Peripherals.Leds;
+﻿using Meadow.Peripherals.Displays;
 using Meadow.Peripherals.Relays;
 using Meadow.Peripherals.Sensors;
-using Meadow.Peripherals.Sensors.Atmospheric;
-using Meadow.Peripherals.Sensors.Buttons;
 using Meadow.Peripherals.Sensors.Distance;
 using Meadow.Peripherals.Sensors.Environmental;
-
+using TempCorrectedDOSensorContract;
 namespace WaterPlantir.Hardware
 {
     public interface IWaterPlantirHardware
     {
         //--- project lab bits
         IPixelDisplay? Display { get; }
+        /*
         IRgbPwmLed? RgbLed { get; }
         ITemperatureSensor? TemperatureSensor { get; }
         IHumiditySensor? HumiditySensor { get; }
@@ -23,11 +19,12 @@ namespace WaterPlantir.Hardware
         IButton? RightButton { get; }
         IButton? UpButton { get; }
         IButton? DownButton { get; }
-
+        */
         //---- external peripherals
         ITemperatureSensor Thermistor_One { get; }
-        IDissolvedOxygenConcentrationSensor DissolvedOxygenMeter { get; }
-        IRangeFinder DistanceSensor { get; }
+        //IDissolvedOxygenConcentrationSensor DissolvedOxygenMeter { get; }
+        ITempCorrectedDOsensor DissolvedOxygenMeter  {get; }
+         IRangeFinder DistanceSensor { get; }
         // ---- 2 4 -channel i2c Relays
         IRelay Relay110_Sump { get; set; }
         IRelay Relay110_Aerator { get; set; }

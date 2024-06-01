@@ -18,8 +18,8 @@
  * empty it only when the receiving tank is full and we are ready to start a new batch?
  * ********************************************************************************/
 
-#define TESTING     // if TESTING is defined, we use different (shortened) process time spans
-//#undef TESTING
+//#define TESTING     // if TESTING is defined, we use different (shortened) process time spans
+#undef TESTING
 
 using Meadow;
 using Meadow.Foundation.Graphics;
@@ -154,7 +154,7 @@ namespace WaterPlantir.Controllers
             control_stage = STARTING;
           
             //==== LED to RED
-            Hardware.RgbLed?.SetColor(Color.Red);
+           //  Hardware.RgbLed?.SetColor(Color.Red);
             //==== Display Controller
             if (Hardware.Display is { } display)
             {
@@ -195,7 +195,7 @@ namespace WaterPlantir.Controllers
 
         private void Thermistor_TempreatureUpdated(object sender, IChangeResult<Meadow.Units.Temperature> e)
         {
-            if (Math.Abs (e.New.Celsius - WaterPlantirConditions.ThermistorOneTemp.Value.Celsius) > 1)
+            if (Math.Abs (e.New.Celsius - WaterPlantirConditions.ThermistorOneTemp.Value.Celsius) > 0.1)
             {
                 Resolver.Log.Info($"Temperature Changed: {e.New.Celsius:N1} °C");
                 WaterPlantirConditions.ThermistorOneTemp = e.New;
@@ -206,7 +206,7 @@ namespace WaterPlantir.Controllers
 
         private void DOsensor_ConcentrationUpdated(object sender, IChangeResult<ConcentrationInWater> e)
         {
-            if (Math.Abs(e.New.MilligramsPerLiter - e.Old.Value.MilligramsPerLiter) > 0.2)
+            if (Math.Abs(e.New.MilligramsPerLiter - e.Old.Value.MilligramsPerLiter) > 0.1)
             {
                 Resolver.Log.Info($"Ox Conc Changed: {e.New.MilligramsPerLiter:N1} mg/l");
                 WaterPlantirConditions.Concentration = e.New;
@@ -226,7 +226,7 @@ namespace WaterPlantir.Controllers
             WaterPlantirConditions = await ReadSensors();
             Resolver.Log.Info($"Thermistor 1: {WaterPlantirConditions.ThermistorOneTemp?.Celsius:N2}°C");
             Resolver.Log.Info($"Distance to Top of Liquid: {WaterPlantirConditions.DistanceToTopOfLiquid?.Centimeters:N2}cm");
-            Resolver.Log.Info($"Concentration: {WaterPlantirConditions.Concentration?.MilligramsPerLiter}mg/l");
+            Resolver.Log.Info($"Concentration: {WaterPlantirConditions.Concentration?.MilligramsPerLiter:N2}mg/l");
             displayController.UpdateModel(WaterPlantirConditions);
 
             Hardware.DistanceSensor.Updated += A02yyuw_DistanceUpdated;
@@ -235,9 +235,10 @@ namespace WaterPlantir.Controllers
 
             Hardware.DissolvedOxygenMeter.Updated += DOsensor_ConcentrationUpdated;
 
-            Hardware.Thermistor_One.StartUpdating(TimeSpan.FromSeconds (5));
-            Hardware.DissolvedOxygenMeter.StartUpdating(TimeSpan.FromSeconds(5));
+            
+            Hardware.DissolvedOxygenMeter.StartUpdating(TimeSpan.FromSeconds(2));
             Hardware.DistanceSensor.StartUpdating(TimeSpan.FromSeconds (2));
+            //Hardware.Thermistor_One.StartUpdating(TimeSpan.FromSeconds(2));
 
 
             while (IsRunning)
@@ -263,7 +264,6 @@ namespace WaterPlantir.Controllers
                 
             }
         }
-
         protected void StopUpdating()
         {
             if (!IsRunning)
@@ -292,18 +292,21 @@ namespace WaterPlantir.Controllers
             Resolver.Log.Info($"Reading sensors.");
 
             TimeSpan timeoutDuration = TimeSpan.FromSeconds(5);
-
+            /*
             var temperatureTask = Hardware.TemperatureSensor?.Read();
             var humidityTask = Hardware.HumiditySensor?.Read();
             var pressureTask = Hardware.PressureSensor?.Read();
+            */
             var thermistorOneTask = Hardware.Thermistor_One?.Read();
             var distanceSensorTask = Hardware.DistanceSensor?.Read();
             var dissolvedOxygenTask = Hardware.DissolvedOxygenMeter.Read();
 
             // run the tasks in serial with timeouts
+            /*
             await Task.WhenAny(temperatureTask, Task.Delay(timeoutDuration));
             await Task.WhenAny(humidityTask, Task.Delay(timeoutDuration));
             await Task.WhenAny(pressureTask, Task.Delay(timeoutDuration));
+            */
             await Task.WhenAny(thermistorOneTask, Task.Delay(timeoutDuration));
             await Task.WhenAny(distanceSensorTask, Task.Delay(timeoutDuration));
             await Task.WhenAny(dissolvedOxygenTask, Task.Delay(timeoutDuration));
@@ -313,9 +316,11 @@ namespace WaterPlantir.Controllers
             // pull the data out and put into the model
             var climate = new WaterPlantirConditionsModel()
             {
+                /*
                 Temperature = temperatureTask.IsCompletedSuccessfully ? temperatureTask?.Result : null,
                 Humidity = (humidityTask.IsCompletedSuccessfully ? humidityTask?.Result : null),
                 Pressure = (pressureTask.IsCompletedSuccessfully ? pressureTask?.Result : null),
+                */
                 ThermistorOneTemp = (thermistorOneTask.IsCompletedSuccessfully ? thermistorOneTask?.Result : null),
                 DistanceToTopOfLiquid = (distanceSensorTask.IsCompletedSuccessfully ? distanceSensorTask?.Result : null),
                 Concentration = (dissolvedOxygenTask.IsCompletedSuccessfully ? dissolvedOxygenTask?.Result : null),

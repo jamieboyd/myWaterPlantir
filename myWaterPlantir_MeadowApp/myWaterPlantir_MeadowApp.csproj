@@ -6,9 +6,9 @@
     <AssemblyName>App</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.F7" Version="*" />
-    <PackageReference Include="Meadow.Foundation" Version="*" />
-    <PackageReference Include="Meadow.Foundation.Grove.Relays.4-ChannelSpdtRelay" Version="1.11.0" />
+    <PackageReference Include="Meadow.F7" Version="1.12.0" />
+    <PackageReference Include="Meadow.Foundation" Version="1.12.0" />
+    <PackageReference Include="Meadow.Foundation.Grove.Relays.4-ChannelSpdtRelay" Version="1.12.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Bluetooth\" />
@@ -33,14 +33,17 @@
     <ProjectReference Include="..\myWaterPlantir_Core\myWaterPlantir_Core.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="TempCorrectedDOSensorContract">
+      <HintPath>..\..\Meadow.Foundation_dev\Source\TempCorrectedDOSensorContract\bin\Release\netstandard2.1\TempCorrectedDOSensorContract.dll</HintPath>
+    </Reference>
     <Reference Include="DFRobotGravityDOMeter">
-      <HintPath>..\..\..\Meadow.Foundation.Peripherals\Sensors.Environmental.DFRobotGravityDOMeter\Driver\bin\Release\netstandard2.1\DFRobotGravityDOMeter.dll</HintPath>
+      <HintPath>..\..\Meadow.Foundation_dev\Source\Meadow.Foundation.Peripherals\Sensors.Environmental.DFRobotGravityDOMeter\Driver\bin\Release\netstandard2.1\DFRobotGravityDOMeter.dll</HintPath>
     </Reference>
     <Reference Include="Thermistor">
-      <HintPath>..\..\..\Meadow.Foundation.Peripherals\Sensors.Temperature.Thermistor\Driver\bin\Release\netstandard2.1\Thermistor.dll</HintPath>
+      <HintPath>..\..\Meadow.Foundation_dev\Source\Meadow.Foundation.Peripherals\Sensors.Temperature.Thermistor\Driver\bin\Release\netstandard2.1\Thermistor.dll</HintPath>
     </Reference>
     <Reference Include="A02yyuw">
-      <HintPath>..\..\..\Meadow.Foundation.Peripherals\Sensors.Distance.A02yyuw\Driver\bin\Release\netstandard2.1\A02yyuw.dll</HintPath>
+      <HintPath>..\..\Meadow.Foundation_dev\Source\Meadow.Foundation.Peripherals\Sensors.Distance.A02yyuw\Driver\bin\Release\netstandard2.1\A02yyuw.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+myWaterPlantir_Core/myWaterPlantir_Core.csproj
+*.csproj
